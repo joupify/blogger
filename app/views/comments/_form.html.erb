@@ -1,25 +1,7 @@
-<%= form_with(model: [@commentable, comment], local: true) do |form| %>
-<%= form.hidden_field :commentable_type, value: commentable.class.name %>
-<%= form.hidden_field :commentable_id, value: commentable.id %>
-
-<% if comment.errors.any? %>
-<div style="color: red">
-  <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
-
-  <ul>
-    <% comment.errors.each do |error| %>
-      <li><%= error.full_message %></li>
-    <% end %>
-  </ul>
-</div>
-<% end %>
-
-<div class="field form-control">
-  <%= form.label :content %>
-  <%= form.text_area :content, class:"form-control" %>
-</div>
-
-<div class="actions">
-  <%= form.submit %>
-</div>
+<%= form_with(model: [@commentable, comment], local: true) do |f| %>
+    <%= f.hidden_field :commentable_id, value: @commentable.id %>
+    <%= f.hidden_field :commentable_type, value: @commentable.class.name %>
+    <%= f.label :content %>
+    <%= f.text_area :content %>
+    <%= f.submit " Add a comment" %>
 <% end %>

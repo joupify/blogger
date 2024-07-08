@@ -1,15 +1,16 @@
+<div class="container">  
+  <%= render @post %>
 
-<div class="container">
-  <h2><%= @post.title %></h2>
-  <p class="justify-text"><%= simple_format(@post.description) %></p>
-  <%= link_to 'edit post', edit_post_path(@post) %>
-  <%= link_to 'back to posts', posts_path %>
+  <%= link_to 'Edit', edit_post_path(@post) %> |
+  <%= link_to 'Back', posts_path %>
 
-  <h3>Comments</h3>
-  <hr />
-    <%= render partial: 'comments/comment', collection: @post.comments, as: :comment %>
 
-  <h3>Add a comment:</h3>
-  <%= render partial: 'comments/form', locals: { commentable: @post, comment: Comment.new } %>
-  <%= link_to 'back to posts', posts_path %>
+  <h1> comments </h1>
+
+  <%= render @post.comments, as: :comment %>
+
+  <%= render partial:'comments/form', locals: {commentable: @post, comment: Comment.new}, as: :comment %>
+
+
+
 </div>

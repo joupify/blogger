@@ -1,0 +1,15 @@
+@import "bootstrap";
+
+
+.comment {
+    margin: 1em 0em 1em 1em;
+    padding-left: 1em;
+    border-left: 2px solid lightgray;
+  }
+
+  .justify-text {
+    text-align: justify;
+    white-space: pre-line; /* Preserves new lines */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    }

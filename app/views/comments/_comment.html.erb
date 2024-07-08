@@ -1,4 +1,20 @@
-<h2> Comments</h2>
-<%= comment.user.name %>
-<p><%= comment.content%></p>
-<p>posted at: </p>
+<div class="comment">
+
+<p class="mb-0"><%= comment.content%></p>
+<p>posted by: <strong><%= comment.user.name %></strong> 
+<small class="fst-italic"><%= time_ago_in_words(comment.created_at) %> ago</small></p>
+<p><%= button_to "delete", [@commentable, comment], method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-danger mt-1' %></p>
+
+
+
+<%= link_to 'Reply', "#", data: {comment_id: comment.id}  %> 
+<%= render partial: 'comments/form', locals: {commentable: comment, comment: Comment.new} %>
+
+
+
+<!-- sub comments  -->
+<div>
+    <%= render partial: 'comments/comment', collection: comment.comments, as: :comment%>
+</div>
+
+</div>
