@@ -7,10 +7,16 @@
 
   <h1> comments </h1>
 
-  <%= render @post.comments, as: :comment %>
 
-  <%= render partial:'comments/form', locals: {commentable: @post, comment: Comment.new}, as: :comment %>
+  <turbo_frame id="comments">
+    <%= turbo_stream_from "comments" %>
+    <%= render partial: 'comments/comment', collection: @post.comments, as: :comment %>
+  </turbo_frame>
+
+  <%= render partial:'comments/form', locals: {commentable: @post, comment: Comment.new}%>
 
 
 
 </div>
+
+

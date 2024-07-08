@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :find_commentable, only: [:create]
+  before_action :set_commentable, only: [:create]
 
   def new
     @comment = Comment.new
@@ -12,6 +12,8 @@ class CommentsController < ApplicationController
     if @comment.save
       respond_to do |format|
         format.html { redirect_to @commentable }
+        format.turbo_stream
+
       end
     else
       respond_to do |format|
@@ -30,13 +32,9 @@ class CommentsController < ApplicationController
 
   private
 
-  def find_commentable
-    case params[:comment][:commentable_type]
-    when "Post"
-      @commentable = Post.find(params[:comment][:commentable_id])
-    when "Comment"
-      @commentable = Comment.find(params[:comment][:commentable_id])
-    end
+  def set_commentable
+      @commentable = Post.find(params[:comment][:commentable_id]) if params[:comment][:commentable_type]== "Post"
+      @commentable = Comment.find(params[:comment][:commentable_id]) if params[:comment][:commentable_type]== "Comment"
   end
 
   def comment_params
