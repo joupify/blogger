@@ -5,7 +5,7 @@ class CommentMailer < ApplicationMailer
   #
   #   en.message_mailer.new_message.subject
   #class CommentMailer < ApplicationMailer
-  
+
   def new_comment
     @comment = params[:comment]
 

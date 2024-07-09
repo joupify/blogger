@@ -7,6 +7,11 @@ class CommentNotification < Noticed::Base
   # Add your delivery methods
   deliver_by :database
   deliver_by :email, mailer: "CommentMailer", method: :new_comment
+  # deliver_by :webpush, class: "DeliveryMethods::Webpush"
+
+  # deliver_by :slack
+  # deliver_by :custom, class: "MyDeliveryMethod"
+  #
 
   # Add required params
   param :comment

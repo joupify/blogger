@@ -9,10 +9,10 @@
 #  updated_at  :datetime         not null
 #  user_id     :bigint           not null
 #
-class Post < ApplicationRecord
-    belongs_to :user
-    has_many :comments, as: :commentable, dependent: :destroy
-
-    validates :description, presence: true
-    validates :title, presence: true
+FactoryBot.define do
+  factory :post do
+    association :user
+    title { "MyString" }
+    description { "MyText" }
+  end
 end
