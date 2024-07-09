@@ -13,6 +13,8 @@ class CommentsController < ApplicationController
       respond_to do |format|
         format.html { redirect_to @commentable }
         format.turbo_stream
+        CommentNotification.with(comment: @comment).deliver_later(@comment.commentable.user)
+
 
       end
     else

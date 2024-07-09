@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: comments
+#
+#  id               :bigint           not null, primary key
+#  content          :text
+#  user_id          :bigint           not null
+#  commentable_type :string           not null
+#  commentable_id   :bigint           not null
+#  deleted_at       :datetime
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#
 class Comment < ApplicationRecord
   belongs_to :user
   belongs_to :commentable, polymorphic: true
@@ -5,6 +18,11 @@ class Comment < ApplicationRecord
 
   validates :content, presence: true
   validates :user, presence: true
+
+
+
+
+  
   
   after_create_commit do 
     if commentable_type == "Comment"
